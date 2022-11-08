@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { Sidebar, Menu, MenuItem, useProSidebar } from "react-pro-sidebar";
+import "./App.css";
+function Layout() {
+  const { collapseSidebar } = useProSidebar();
 
-function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div id="app">
+      <Sidebar id="sidebar" style={{ height: "100%" }}>
+        <Menu>
+          <div>lorem</div>
+          <MenuItem>sth Documentation</MenuItem>
+          <MenuItem> Calendar</MenuItem>
+          <MenuItem> E-commerce</MenuItem>
+        </Menu>
+      </Sidebar>
+      <main>
+        <button onClick={() => collapseSidebar()}>Collapse</button>
+      </main>
     </div>
   );
 }
 
-export default App;
+export default Layout;
