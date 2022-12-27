@@ -7,20 +7,43 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import "./App.css";
+import { useState, useEffect } from "react";
 
-function Layout() {
-  const { collapseSidebar } = useProSidebar();
-  // const [isCollapsed, setIsCollapsed] = useState(false);
+function App() {
+  const { collapseSidebar, toggleSidebar, collapsed, toggled, broken, rtl } =
+    useProSidebar();
+
+  const toggle = () => {
+    toggleSidebar();
+    if (toggled) {
+      console.log(true);
+      collapseSidebar();
+    } else {
+      console.log(false);
+      collapseSidebar();
+    }
+  };
 
   return (
-    <div id="app" style={({ height: "100vh" }, { display: "flex" })}>
-      <Sidebar id="sidebar" style={{ height: "100%" }}>
+    <div
+      id="app"
+      style={({ height: "100vh" }, { display: "flex", flexDirection: "row" })}
+    >
+      <Sidebar
+        className="sidebarComp"
+        breakPoint="sm"
+        transitionDuration={800}
+        backgroundColor="rgb(0, 249, 249, 0.7)"
+        rtl={false}
+        style={{ height: "100vh" }}
+      >
+        {/* {!broken && ( */}
         <Menu>
           <MenuItem
             icon={<MenuOutlinedIcon />}
-            onClick={() => {
-              collapseSidebar();
-            }}
+            // onClick={() => {
+            //   collapseSidebar();
+            // }}
             style={{ textAlign: "center" }}
           >
             {" "}
@@ -34,14 +57,28 @@ function Layout() {
           <MenuItem icon={<HelpOutlineOutlinedIcon />}>FAQ</MenuItem>
           <MenuItem icon={<CalendarTodayOutlinedIcon />}>Calendar</MenuItem>
         </Menu>
+        {/* )} */}
       </Sidebar>
       <main>
-        <h1 style={{ color: "white", marginLeft: "5rem" }}>
+        <h1
+          onClick={() => {
+            toggle();
+          }}
+          style={{ color: "white", marginLeft: "5rem" }}
+        >
           React-Pro-Sidebar
         </h1>
+        {toggled ? (
+          <h1 style={{ color: "white", marginLeft: "5rem" }}>Toggled</h1>
+        ) : (
+          <h1 style={{ color: "white", marginLeft: "5rem" }}>Not Toggled</h1>
+        )}
+        {broken && (
+          <h1 style={{ color: "white", marginLeft: "5rem" }}>Small screen</h1>
+        )}
       </main>
     </div>
   );
 }
 
-export default Layout;
+export default App;
