@@ -6,7 +6,6 @@ import ReceiptOutlinedIcon from "@mui/icons-material/ReceiptOutlined";
 import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
 import HelpOutlineOutlinedIcon from "@mui/icons-material/HelpOutlineOutlined";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
-import "./App.css";
 import { useState, useEffect } from "react";
 
 function App() {
@@ -30,7 +29,6 @@ function App() {
       style={({ height: "100vh" }, { display: "flex", flexDirection: "row" })}
     >
       <Sidebar
-        className="sidebarComp"
         breakPoint="sm"
         transitionDuration={800}
         backgroundColor="rgb(0, 249, 249, 0.7)"
